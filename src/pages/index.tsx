@@ -1,30 +1,70 @@
-import * as React from "react";
-import { Link } from "gatsby";
-import { useStaticQuery, graphql } from "gatsby";
+import React from "react";
+import { graphql } from "gatsby";
+import { getImage } from "gatsby-plugin-image";
 
-const IndexPage = () => {
-  const staticData = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+import {
+  Layout,
+  Card,
+  CardContent,
+  CardTitleContainer,
+  CardTitle,
+  StyledLink,
+  Grid,
+  StyledImage,
+} from "../components";
 
-  console.log(staticData, "staticData from graphql");
+const IndexPage = ({ data }: any) => {
   return (
-    <main>
-      <title>Home Page</title>
-      <h1>Welcome to my Gatsby site!</h1>
-      <Link to="/blog">Blog</Link>
-      <p>
-        I'm making this by following the Gatsby Tutorial. Title:{" "}
-        {staticData.site.siteMetadata.title}
-      </p>
-    </main>
+    <Layout>
+      <section>filters</section>
+      <Grid>
+        {data.allMdx.nodes.map((node: any) => {
+          const image = getImage(node.frontmatter.hero_image);
+          return (
+            <Card key={node.id}>
+              <StyledLink to={`/${node.slug}`}>
+                <CardContent>
+                  {image && (
+                    <StyledImage
+                      image={image}
+                      alt={node.frontmatter.hero_image_alt}
+                      imgStyle={{
+                        objectFit: "cover",
+                      }}
+                    />
+                  )}
+                  <CardTitleContainer>
+                    <CardTitle>{node.frontmatter.title}</CardTitle>
+                  </CardTitleContainer>
+                </CardContent>
+              </StyledLink>
+            </Card>
+          );
+        })}
+      </Grid>
+    </Layout>
   );
 };
+
+export const query = graphql`
+  query {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+      nodes {
+        frontmatter {
+          date(formatString: "MMMM D, YYYY")
+          title
+          hero_image_alt
+          hero_image {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        id
+        slug
+      }
+    }
+  }
+`;
 
 export default IndexPage;
