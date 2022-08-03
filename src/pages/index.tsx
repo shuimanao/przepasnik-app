@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 
@@ -11,14 +11,39 @@ import {
   StyledLink,
   Grid,
   StyledImage,
+  ButtonSection,
+  Button,
 } from "../components";
 
 const IndexPage = ({ data }: any) => {
+  const initState = data.allMdx.nodes;
+  const [recipesList, setRecipesList] = useState(initState);
+
+  const handleResetClick = useCallback(
+    () => setRecipesList(initState),
+    [setRecipesList]
+  );
+
+  const handleFilterClick = useCallback(
+    (category?: string) => {
+      const filteredRecipes = data.allMdx.nodes.filter(
+        (node: any) => node.frontmatter.category === category
+      );
+      setRecipesList(filteredRecipes);
+    },
+    [setRecipesList]
+  );
+
   return (
     <Layout>
-      <section>filters</section>
+      <ButtonSection>
+        <Button onClick={handleResetClick}>Wszystkie</Button>
+        <Button onClick={() => handleFilterClick("sweet")}>Słodkie</Button>
+        <Button onClick={() => handleFilterClick("salty")}>Wytrawne</Button>
+        <Button onClick={() => handleFilterClick()}>Nieoczywiste</Button>
+      </ButtonSection>
       <Grid>
-        {data.allMdx.nodes.map((node: any) => {
+        {recipesList.map((node: any) => {
           const image = getImage(node.frontmatter.hero_image);
           return (
             <Card key={node.id}>
@@ -53,6 +78,7 @@ export const query = graphql`
         frontmatter {
           date(formatString: "MMMM D, YYYY")
           title
+          category
           hero_image_alt
           hero_image {
             childImageSharp {

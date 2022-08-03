@@ -7,7 +7,8 @@ export const Global = createGlobalStyle`
   }
   * {
     box-sizing: border-box;
-    color: #1f182d;
+    color: #41403e;
+    font-family: Neucha, sans-serif;
   }
 `;
 
