@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import { Link } from "gatsby";
 import {
   Global,
@@ -9,17 +8,16 @@ import {
   Footer,
 } from "./Layout.styles";
 
+export const Head = () => (
+  <>
+    <meta charSet="UTF-8" />
+    <title>Przepaśnik</title>
+  </>
+);
+
 export const Layout: React.FC<{}> = ({ children }: any) => {
   return (
     <>
-      <Helmet
-        htmlAttributes={{
-          lang: "pl-PL",
-        }}
-      >
-        <meta charSet="UTF-8" />
-        <title>Przepaśnik</title>
-      </Helmet>
       <Global />
       <HeaderSection>
         <PageTitle>

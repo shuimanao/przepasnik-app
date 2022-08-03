@@ -36,3 +36,5 @@ export const query = graphql`
 `;
 
 export default SingleRecipe;
+
+export { Head } from "../components/Layout";

@@ -17,7 +17,6 @@ const config: GatsbyConfig = {
         path: `${__dirname}/recipes`,
       },
     },
-    "gatsby-plugin-react-helmet",
     "gatsby-transformer-sharp",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
