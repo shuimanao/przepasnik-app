@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "gatsby";
+import React, { FC, ReactNode } from "react";
+import { Link, type HeadFC } from "gatsby";
 import {
   Global,
   HeaderSection,
@@ -8,14 +8,14 @@ import {
   Footer,
 } from "./Layout.styles";
 
-export const Head = () => (
+export const Head: HeadFC = () => (
   <>
     <meta charSet="UTF-8" />
     <title>Przepaśnik</title>
   </>
 );
 
-export const Layout: React.FC<{}> = ({ children }: any) => {
+export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <>
       <Global />

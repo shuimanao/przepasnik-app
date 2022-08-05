@@ -1,10 +1,21 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, type ImageDataLike } from "gatsby-plugin-image";
 import { Layout } from "../components";
 
-const SingleRecipe = ({ data }: any) => {
+type DataProps = {
+  mdx: {
+    frontmatter: {
+      title: string;
+      hero_image_alt: string;
+      hero_image: ImageDataLike;
+    };
+    body: string;
+  };
+};
+
+const SingleRecipe = ({ data }: PageProps<DataProps>) => {
   const image = getImage(data.mdx.frontmatter.hero_image);
   return (
     <Layout>
@@ -22,7 +33,6 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
-        date(formatString: "MMMM D, YYYY")
         hero_image_alt
         hero_image {
           childImageSharp {

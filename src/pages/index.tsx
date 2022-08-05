@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 
 import {
@@ -15,7 +15,28 @@ import {
   Button,
 } from "../components";
 
-const IndexPage = ({ data }: any) => {
+type DataProps = {
+  allMdx: {
+    nodes: NodesProps[];
+  };
+};
+
+type NodesProps = {
+  frontmatter: {
+    title: string;
+    category: string;
+    hero_image_alt: string;
+    hero_image: {
+      childImageSharp: {
+        gatsbyImageData: string;
+      };
+    };
+  };
+  id: number;
+  slug: string;
+};
+
+const IndexPage = ({ data }: PageProps<DataProps>) => {
   const initState = data.allMdx.nodes;
   const [recipesList, setRecipesList] = useState(initState);
 
@@ -76,7 +97,6 @@ export const query = graphql`
     allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       nodes {
         frontmatter {
-          date(formatString: "MMMM D, YYYY")
           title
           category
           hero_image_alt
