@@ -7,6 +7,7 @@ import {
   MainSection,
   Footer,
 } from "./Layout.styles";
+import { SearchBar } from "./SearchBar";
 
 export const Head: HeadFC = () => (
   <>
@@ -23,7 +24,7 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         <PageTitle>
           <Link to="/">Przepaśnik</Link>
         </PageTitle>
-        search bar
+        <SearchBar />
       </HeaderSection>
       <MainSection>{children}</MainSection>
       <Footer>footer</Footer>
