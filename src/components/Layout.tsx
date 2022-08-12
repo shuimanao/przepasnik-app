@@ -21,9 +21,9 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
     <>
       <Global />
       <HeaderSection>
-        <PageTitle>
-          <Link to="/">Przepaśnik</Link>
-        </PageTitle>
+        <Link to="/">
+          <PageTitle>Przepaśnik</PageTitle>
+        </Link>
         <SearchBar />
       </HeaderSection>
       <MainSection>{children}</MainSection>

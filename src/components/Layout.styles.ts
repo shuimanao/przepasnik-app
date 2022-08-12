@@ -1,4 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
+import "@fontsource/rubik";
+import "@fontsource/kalam";
 
 export const Global = createGlobalStyle`
   body {
@@ -8,7 +10,8 @@ export const Global = createGlobalStyle`
   * {
     box-sizing: border-box;
     color: #41403e;
-    font-family: Neucha, sans-serif;
+    font-family: Rubik, sans-serif;
+    text-decoration: none;
   }
 `;
 
@@ -22,6 +25,7 @@ export const HeaderSection = styled.section`
 
 export const PageTitle = styled.h1`
   margin: 0;
+  font-family: Kalam, cursive;
 `;
 
 export const MainSection = styled.main`
