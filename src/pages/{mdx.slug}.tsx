@@ -33,17 +33,29 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
-        hero_image_alt
-        hero_image {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
       }
       body
     }
   }
 `;
+
+// With image
+// export const query = graphql`
+//   query ($id: String) {
+//     mdx(id: { eq: $id }) {
+//       frontmatter {
+//         title
+//         hero_image_alt
+//         hero_image {
+//           childImageSharp {
+//             gatsbyImageData
+//           }
+//         }
+//       }
+//       body
+//     }
+//   }
+// `;
 
 export default SingleRecipe;
 

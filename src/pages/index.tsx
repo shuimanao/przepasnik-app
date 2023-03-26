@@ -99,12 +99,6 @@ export const query = graphql`
         frontmatter {
           title
           category
-          hero_image_alt
-          hero_image {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
         }
         id
         slug
@@ -112,6 +106,28 @@ export const query = graphql`
     }
   }
 `;
+
+// With image
+// export const query = graphql`
+//   query {
+//     allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+//       nodes {
+//         frontmatter {
+//           title
+//           category
+//           hero_image_alt
+//           hero_image {
+//             childImageSharp {
+//               gatsbyImageData
+//             }
+//           }
+//         }
+//         id
+//         slug
+//       }
+//     }
+//   }
+// `;
 
 export default IndexPage;
 
