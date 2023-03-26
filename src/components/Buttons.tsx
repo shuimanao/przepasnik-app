@@ -6,6 +6,13 @@ export const ButtonSection = styled.section`
   justify-content: center;
   margin-bottom: 30px;
   gap: 20px;
+  flex-direction: column;
+  background-color: #007ac1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
 export const Button = styled.button`

@@ -24,7 +24,7 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         <Link to="/">
           <PageTitle>Przepaśnik</PageTitle>
         </Link>
-        <SearchBar />
+        {/* <SearchBar /> */}
       </HeaderSection>
       <MainSection>{children}</MainSection>
       <Footer>footer</Footer>

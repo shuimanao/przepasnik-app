@@ -4,10 +4,14 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { FancyClickableItems } from "./mixins";
 
 export const Card = styled.article`
-  flex-basis: 25%;
-  flex-grow: 0;
-  max-width: 25%;
+  flex-basis: 100%;
   ${FancyClickableItems}
+  @media only screen and (min-width: 600px) {
+    flex-basis: 49%;
+  }
+  @media only screen and (min-width: 900px) {
+    flex-basis: 24%;
+  }
 `;
 
 export const CardContent = styled.div`
