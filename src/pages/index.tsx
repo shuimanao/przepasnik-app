@@ -61,7 +61,9 @@ const IndexPage = ({ data }: PageProps<DataProps>) => {
         <Button onClick={handleResetClick}>Wszystkie</Button>
         <Button onClick={() => handleFilterClick("sweet")}>Słodkie</Button>
         <Button onClick={() => handleFilterClick("salty")}>Wytrawne</Button>
-        <Button onClick={() => handleFilterClick()}>Nieoczywiste</Button>
+        <Button onClick={() => handleFilterClick("undefined")}>
+          Nieoczywiste
+        </Button>
       </ButtonSection>
       <Grid>
         {recipesList.map((node: any) => {
